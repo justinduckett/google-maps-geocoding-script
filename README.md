@@ -22,13 +22,19 @@ Both versions read a list of addresses, fetch latitude and longitude coordinates
 - **For the Notebook**: Jupyter Notebook or JupyterLab installed.
 
 ## Installation
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/justinduckett/google-maps-geocoding-script.git
-   cd google-maps-geocoding-script
-   ```
 
-2. **Install Dependencies**:
+Follow these steps to set up your environment and prepare to run either the notebook or the script.
+
+### 1. Clone the Repository
+Download the project files to your computer:
+```bash
+git clone https://github.com/justinduckett/google-maps-geocoding-script.git
+cd google-maps-geocoding-script
+```
+- **What this does**: This uses Git to copy the repository from GitHub to your local machine. You’ll need Git installed (download from [git-scm.com](https://git-scm.com/)).
+- **If you don’t have Git**: Alternatively, click "Code" > "Download ZIP" on GitHub, then extract the ZIP file and navigate to the folder in a terminal or file explorer.
+
+### 2. **Install Dependencies**:
    Install the required library using pip:
    ```bash
    pip install requests
@@ -38,59 +44,58 @@ Both versions read a list of addresses, fetch latitude and longitude coordinates
    pip install notebook
    ```
 
+### 3. Get a Google Maps API Key
+- **Steps**:
+  1. Go to [Google Cloud Console](https://console.cloud.google.com/).
+  2. Create a project (or use an existing one).
+  3. Enable the "Geocoding API" under APIs & Services > Library.
+  4. Go to Credentials > Create Credentials > API Key.
+  5. Copy the key (e.g., `xxxxxxxxxxxxxxxxx`) and keep it secure.
+- **What this does**: The API key authenticates your requests to Google’s geocoding service.
+
+### Summary
+After these steps, you’ll have:
+- The project files (`geocode_addresses.ipynb`, `geocode_addresses.py`).
+- Python 3.x and `requests` installed.
+- Jupyter (if using the notebook).
+- An API key ready to use.
+
 ## Usage
 
 ### Option 1: Jupyter Notebook (`geocode_addresses.ipynb`)
-Best for interactive use or learning.
-
 1. **Prepare Your Input CSV**:
    - Create a CSV file (e.g., `addresses.csv`) with at least one column containing addresses.
-   - Example format:
+   - Example:
      ```
      Address
      1600 Amphitheatre Parkway, Mountain View, CA
      1 Infinite Loop, Cupertino, CA
      ```
-
 2. **Update the Notebook**:
-   - Open the notebook in Jupyter:
+   - Open it:
      ```bash
      jupyter notebook geocode_addresses.ipynb
      ```
-   - In the last code cell, modify:
-     - `input_file`: Replace `C:\\Users\\fake_user\\python_files\\addresses.csv` with your input CSV path.
-     - `output_file`: Replace `C:\\Users\\fake_user\\python_files\\addresses_geocoded.csv` with your output path.
-     - `api_key`: Replace `'xxxxxxxxxxxxxxxxx'` with your Google Maps API key.
-
-3. **Run the Notebook**:
-   - Execute all cells (`Cell > Run All` or use the play button).
-   - Output will appear below the cells, ending with a message like:
+   - Edit the last cell’s `input_file`, `output_file`, and `api_key` with your paths and key.
+3. **Run**:
+   - Click `Cell > Run All`. Output ends with:
      ```
      Geocoding complete. Results written to C:\path\to\your\output.csv
      ```
 
 ### Option 2: Python Script (`geocode_addresses.py`)
-Best for automation or running in a terminal/IDE.
-
 1. **Prepare Your Input CSV**:
    - Same as above.
-
 2. **Update the Script**:
-   - Open `geocode_addresses.py` in a text editor or IDE (e.g., VS Code).
-   - In the `if __name__ == "__main__":` block, modify:
-     - `input_file`, `output_file`, and `api_key` as described above.
-
-3. **Run the Script**:
-   - **Via Command Line**:
+   - Edit `input_file`, `output_file`, and `api_key` in a text editor or IDE.
+3. **Run**:
+   - **Command Line**:
      ```bash
      python geocode_addresses.py
      ```
-   - **Via Visual Studio Code**:
-     - Install VS Code and the Python extension.
-     - Open the folder in VS Code (`File > Open Folder`).
-     - Select your Python interpreter (`Ctrl+Shift+P` > "Python: Select Interpreter").
-     - Click the "Run" button (green triangle) or right-click and select "Run Python File in Terminal."
-   - Output will appear in the terminal, e.g.:
+   - **VS Code**:
+     - Open the folder, select Python interpreter, and click "Run."
+   - Output:
      ```
      Geocoding complete. Results written to C:\path\to\your\output.csv
      ```
@@ -109,14 +114,14 @@ Address,Latitude,Longitude
 ```
 
 ## Notes
-- **API Key Security**: Do not commit your API key to the repository. Consider using environment variables (e.g., `api_key = os.getenv("GOOGLE_API_KEY")`) and a `.env` file for production use.
-- **Rate Limiting**: Both versions include a 0.1-second delay between API calls (`time.sleep(0.1)`). Adjust if needed based on your API quota.
-- **Error Handling**: If an address fails to geocode, `None` is written for the coordinates.
+- **API Key Security**: Don’t commit your API key. Use environment variables (e.g., `os.getenv("GOOGLE_API_KEY")`) for production.
+- **Rate Limiting**: Uses `time.sleep(0.1)`—adjust if needed.
+- **Error Handling**: Writes `None` for failed geocodes.
 
 ## Troubleshooting
-- **API Errors**: Verify your API key is valid and the Geocoding API is enabled in Google Cloud Console.
-- **File Not Found**: Check your input file path.
-- **No Output**: Ensure the script/notebook ran to completion and check for errors in the console/terminal.
+- **API Errors**: Check API key and Geocoding API status in Google Cloud Console.
+- **File Not Found**: Verify CSV path.
+- **No Output**: Check terminal for errors.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
