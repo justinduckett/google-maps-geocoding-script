@@ -25,7 +25,7 @@ Both versions read a list of addresses, fetch latitude and longitude coordinates
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/justinduckett/google-maps-geocoding-script.git
-   cd your-repo-name
+   cd google-maps-geocoding-script
    ```
 
 2. **Install Dependencies**:
