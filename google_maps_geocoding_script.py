@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
-
 # import python modules
 import csv
 import requests
@@ -55,9 +49,6 @@ if __name__ == "__main__":
     
     process_csv(input_file, output_file, api_key)
     print("Geocoding complete. Results written to", output_file)
-
-
-# In[ ]:
 
 
 
